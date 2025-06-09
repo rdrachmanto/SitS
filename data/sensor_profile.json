@@ -1,0 +1,30 @@
+{
+  "tm1": {
+    "consum": 20,
+    "ideal_interval": 1,
+    "last_used_time": "2018-06-07T12:00:00.000000",
+    "time_gap": 0,
+    "priority": 1
+  },
+  "ec1": {
+    "consum": 20,
+    "ideal_interval": 2,
+    "last_used_time": "2018-06-07T12:00:00.000000",
+    "time_gap": 0,
+    "priority": 1
+  },
+  "ph1": {
+    "consum": 40,
+    "ideal_interval": 1,
+    "last_used_time": "2018-06-07T12:00:00.000000",
+    "time_gap": 0,
+    "priority": 1
+  },
+  "orp1": {
+    "consum": 40,
+    "ideal_interval": 2,
+    "last_used_time": "2018-06-07T12:00:00.000000",
+    "time_gap": 0,
+    "priority": 1.5
+  }
+}
