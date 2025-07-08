@@ -1,5 +1,5 @@
 #define VOLTAGE 5.0   //vcc voltage(unit: V)
-#define OFFSET 0      //UNUSED - zero drift voltage(unit: mV)
+#define OFFSET 16      //UNUSED - zero drift voltage(unit: mV)
 #define LED 13         //operating instructions
 #define ArrayLenth  40 //times of collection
 #define orpPin A0       //orp meter output,connect to Arduino controller ADC pin
@@ -7,7 +7,7 @@
 
 double orpValue; 
 // double offset=0.0;
-int offset=6;
+int offset=0;
 bool is_calibrated = false;
 int wait_count = 5;
 int orpArray[ArrayLenth];
@@ -19,7 +19,7 @@ void setup(void) {
   Serial.begin(9600);
   pinMode(LED,OUTPUT);
   pinMode(calPin,OUTPUT);
-  digitalWrite(calPin, LOW);
+  // digitalWrite(calPin, LOW);
   digitalWrite(calPin, HIGH);
 }
 
@@ -42,19 +42,42 @@ void loop(void) {
         offset += (int)orpValue; 
         is_calibrated = true;
         digitalWrite(calPin, LOW);
-        Serial.print("offset: ");
-        Serial.print((int)offset);
-        Serial.println(" mV");
+        //Serial.print("offset: ");
+        //Serial.print((int)offset);
+        //Serial.println(" mV");
       }
       wait_count--;
     }
     else {
-      Serial.print("ORP: ");
-      Serial.print((int)orpValue);
-      Serial.println(" mV");
+      Serial.print("sensorid:orp2, ori:");
+      Serial.print(orpArray[10]);
+      Serial.print("_");
+      Serial.print(orpArray[12]);
+      Serial.print("_");
+      Serial.print(orpArray[14]);
+      Serial.print("_");
+      Serial.print(orpArray[16]);
+      Serial.print("_");
+      Serial.print(orpArray[18]);
+      Serial.print("_");
+      Serial.print(orpArray[20]);
+      Serial.print("_");
+      Serial.print(orpArray[22]);
+      Serial.print("_");
+      Serial.print(orpArray[23]);
+      Serial.print("_");
+      Serial.print(orpArray[25]);
+      Serial.print("_");
+      Serial.print(orpArray[27]);
+      Serial.print("_");
+      Serial.print(orpArray[29]);
+ 
+      Serial.print(", value:");
+      Serial.println((int)orpValue);
+      //Serial.println(" mV");
       digitalWrite(LED,1-digitalRead(LED)); // convert the state of the LED indicator      
     } 
-    printTime=millis()+800;   
+    printTime=millis()+300;   
   }
 }
 
@@ -97,3 +120,6 @@ double avergearray(int* arr, int number){
   }//if
   return avg;
 }
+
+
+

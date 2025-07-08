@@ -2,7 +2,7 @@ from Pijuice import Pijuice
 import datetime
 
 class PjStatus:
-   
+
     def __init__(self):
         self.pj = Pijuice().pj # Instantiate PiJuice interface object
         self.tmpr = None
@@ -37,18 +37,18 @@ class PjStatus:
 
         ret = {
                'soc'           : self.soc,
-               'Temperature'   : self.tmpr, 
-               'BattVolt'      : self.battVolt, 
-               'BattCurr'      : self.battCurr, 
-               'timeUTC'       : self.time, 
-               'alarmStatus'   : self.alarmStatus, 
+               'Temperature'   : self.tmpr,
+               'BattVolt'      : self.battVolt,
+               'BattCurr'      : self.battCurr,
+               'timeUTC'       : self.time,
+               'alarmStatus'   : self.alarmStatus,
                'alarmTime'     : self.alarmTime,
 
         }
-        
+
         return ret
 
 if '__main__'==__name__:
     st = PjStatus().get()
     for k,v in st.items():
-        print(k,': ',v) 
+        print(k,': ',v)

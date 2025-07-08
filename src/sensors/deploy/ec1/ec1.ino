@@ -1,15 +1,13 @@
-//This code was written to be easy to understand.
-//Modify this code as you see fit.
-//This code will output data to the Arduino serial monitor.
-//Type commands into the Arduino serial monitor to control the pH circuit.
-//This code was written in the Arduino 2.0 IDE
-//An Arduino UNO was used to test this code.
-//This code was last tested 10/2022
+//Send commands to calibrate:
+//'cal,clear' to clear calibration
+//'cal,low,XX.XX' to calibrate at low point
+//'cal,high,XX.XX' to calibrate at high point
+//'R' to read EC value
 
 
 #include <SoftwareSerial.h>                           //we have to include the SoftwareSerial library, or else we can't use it
-#define rx 2                                          //define what pin rx is going to be
-#define tx 3                                          //define what pin tx is going to be
+#define rx 4                                          //define what pin rx is going to be
+#define tx 5                                          //define what pin tx is going to be
 
 SoftwareSerial myserial(rx, tx);                      //define how the soft serial port is going to work
 
@@ -18,7 +16,7 @@ String inputstring = "";                              //a string to hold incomin
 String sensorstring = "";                             //a string to hold the data from the Atlas Scientific product
 boolean input_string_complete = false;                //have we received all the data from the PC
 boolean sensor_string_complete = false;               //have we received all the data from the Atlas Scientific product
-float pH;                                             //used to hold a floating point number that is the pH
+
 
 
 
@@ -55,22 +53,49 @@ void loop() {                                         //here we go...
 
 
   if (sensor_string_complete == true) {               //if a string from the Atlas Scientific product has been received in its entirety
-    Serial.print("sensorid:ph1, value:");     
-    Serial.println(sensorstring);                     //send that string to the PC's serial monitor
-    
-    /*                                                //uncomment this section to see how to convert the pH reading from a string to a float 
-    if (isdigit(sensorstring[0])) {                   //if the first character in the string is a digit
-      pH = sensorstring.toFloat();                    //convert the string to a floating point number so it can be evaluated by the Arduino
-      if (pH >= 7.0) {                                //if the pH is greater than or equal to 7.0
-        Serial.println("high");                       //print "high" this is demonstrating that the Arduino is evaluating the pH as a number and not as a string
-      }
-      if (pH <= 6.999) {                              //if the pH is less than or equal to 6.999
-        Serial.println("low");                        //print "low" this is demonstrating that the Arduino is evaluating the pH as a number and not as a string
-      }
+    if (isdigit(sensorstring[0]) == false) {          //if the first character in the string is a digit
+      Serial.println(sensorstring);                   //send that string to the PC's serial monitor
     }
-    */
+    else                                              //if the first character in the string is NOT a digit
+    {
+      print_EC_data();                                //then call this function 
+    }
     sensorstring = "";                                //clear the string
     sensor_string_complete = false;                   //reset the flag used to tell if we have received a completed string from the Atlas Scientific product
   }
 }
+
+
+
+void print_EC_data(void) {                            //this function will pars the string  
+
+  char sensorstring_array[30];                        //we make a char array
+  char *EC;                                           //char pointer used in string parsing
+  // char *TDS;                                          //char pointer used in string parsing
+  // char *SAL;                                          //char pointer used in string parsing
+  // char *GRAV;                                         //char pointer used in string parsing
+  float f_ec;                                         //used to hold a floating point number that is the EC
+  
+  sensorstring.toCharArray(sensorstring_array, 30);   //convert the string to a char array 
+  EC = strtok(sensorstring_array, ",");               //let's pars the array at each comma
+  // TDS = strtok(NULL, ",");                            //let's pars the array at each comma
+  // SAL = strtok(NULL, ",");                            //let's pars the array at each comma
+  // GRAV = strtok(NULL, ",");                           //let's pars the array at each comma
+
+  Serial.print("sensorid:ec1, value:");                                //we now print each value we parsed separately
+  Serial.println(EC);                                 //this is the EC value
+
+  // Serial.print("TDS:");                               //we now print each value we parsed separately
+  // Serial.println(TDS);                                //this is the TDS value
+
+  // Serial.print("SAL:");                               //we now print each value we parsed separately
+  // Serial.println(SAL);                                //this is the salinity value
+
+  // Serial.print("GRAV:");                              //we now print each value we parsed separately
+  // Serial.println(GRAV);                               //this is the specific gravity
+  // Serial.println();                                   //this just makes the output easier to read
+  
+f_ec= atof(EC);                                     //uncomment this line to convert the char to a float
+}
+
 

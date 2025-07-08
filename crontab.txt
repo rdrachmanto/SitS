@@ -1,4 +1,3 @@
 ### user: pi
 
-#@reboot bash /home/pi/Documents/deploy/main.sh >> /home/pi/Documents/log/sch.log
-
+@reboot bash /home/pi/Sits/main.sh >> /home/pi/Documents/log/sch.log

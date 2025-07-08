@@ -25,7 +25,7 @@ checkSsh() {
             poweroff_pj
         else
             echo "active ssh found (1), no poweroff"
-        fi  
+        fi
     elif [ "$ssh_connections" -gt 1 ]; then
         echo "active ssh found (>1), no poweroff"
     fi
@@ -47,25 +47,25 @@ gitUpdate() {
 ## power off if no ssh connected
 poweroff_pj() {
     # enable wakeup
-    pth /home/pi/Documents/deploy/pijuice/wakeup_enable.py
+    pth /home/pi/SitS/src/pijuice/wakeup_enable.py
     echo "status before sleep:"
-    pth /home/pi/Documents/deploy/pijuice/status.py
+    pth /home/pi/SitS/src/pijuice/status.py
     echo "power off ..."
-    pth /home/pi/Documents/deploy/pijuice/poweroff.py  
+    pth /home/pi/SitS/src/pijuice/poweroff.py
 }
 
 ## schedule
 schedule() {
     # schedule
-    pth /home/pi/Documents/deploy/pijuice/status.py
-    pth /home/pi/Documents/deploy/pijuice/wakeup.py
-    pth /home/pi/Documents/deploy/scheduler/driver.py
-    pth /home/pi/Documents/deploy/pijuice/status.py
+    pth /home/pi/SitS/src/pijuice/status.py
+    pth /home/pi/SitS/src/pijuice/wakeup.py
+    pth /home/pi/SitS/src/pijuice/driver.py
+    pth /home/pi/SitS/src/pijuice/status.py
 }
 
 
 echo "=====================  scheduling  ========================"
-echo "timeUTC: $(/home/pi/Documents/venv_sits/bin/python3 /home/pi/Documents/deploy/pijuice/time.py)"
+echo "timeUTC: $(/home/pi/Documents/venv_sits/bin/python3 /home/pi/SitS/src/pijuice/time.py)"
 
 # watchdog
 #sh watchdog.sh &
@@ -89,9 +89,3 @@ checkSsh
 
 
 #poweroff_pj
-
-
-
-
-
-
