@@ -59,7 +59,7 @@ schedule() {
     # schedule
     pth /home/pi/SitS/src/pijuice/status.py
     pth /home/pi/SitS/src/pijuice/wakeup.py
-    pth /home/pi/SitS/src/pijuice/driver.py
+    pth /home/pi/SitS/src/scheduler/driver.py
     pth /home/pi/SitS/src/pijuice/status.py
 }
 

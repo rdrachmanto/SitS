@@ -51,4 +51,4 @@ timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"
 cd "${curr_folder}/${adn4_folder}"
 bash "${adn4_file}" "${adn_cli}" >> "${soil_log_file}"
 stty -F /dev/ttyACM0 9600 raw -clocal -echo
-timeout --preserve-status 20s cat /dev/ttyACM0 >>  "${soil_log_file}"
+timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"

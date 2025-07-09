@@ -6,7 +6,11 @@ from policy_adap import Policy as plc3
 from Battery import Battery
 
 curr_path = os.path.dirname(os.path.abspath(__file__))
+print(f"curr_path: {curr_path}")
+
 up_path = os.path.dirname(curr_path)
+print(f"up_path: {up_path}")
+
 sys.path.append(up_path+'/pijuice')
 # sys.path.append(up_path+'/sensors')
 sys.path.append(up_path+'/sensors/deploy')
@@ -232,14 +236,14 @@ class Scheduler:
 
 if "__main__"==__name__:
     sch_path= curr_path + '/data/scheduling_log.csv'
-    sensor_path = '/data/sensor_profile.json'
+    sensor_path = curr_path + '/data/sensor_profile.json'
     sensing_path = up_path + '/sensors/deploy/sensing.sh'
     sensing_timeout = 360
     arduino_cli = '/home/pi/arduino-cli'
     py_path = '/home/pi/Documents/venv_sits/bin/python3'
     plc = plc3('P3')
     pj = Pijuice()
-    batt = Battery(mini=1200, base_consume=5, capacity=12000, HW=pj)
+    batt = Battery(mini=1200, base_consume=5, capacity=10000, HW=pj)
     simul = pj   # filling code, null function
     scher = Scheduler(simulator=simul, resolution='hour', policy=plc, sensor_path=sensor_path, sch_path=sch_path, battery=batt, sensing_path=sensing_path, sense_timeout=sensing_timeout, arduino_cli=arduino_cli, py_path=py_path)
     sch = scher.start()
