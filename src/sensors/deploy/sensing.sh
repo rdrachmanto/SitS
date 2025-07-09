@@ -3,8 +3,8 @@
 ###  e.g.: ~/arduino-cli sensing.sh arduino1      ###
 #####################################################
 
-adn1_folder="arduino1"
-adn1_file="arduino1.sh"
+adn1_folder="tm2"
+adn1_file="tm2.sh"
 adn2_folder="ph1"
 adn2_file="ph1.sh"
 adn3_folder="ec2"
@@ -30,12 +30,12 @@ echo "timeUTC: $(/home/pi/Documents/venv_sits/bin/python3 /home/pi/Sits/src/piju
 
 
 echo "compile arduino ..."
+echo "read arduino sensors ..."
 
-# cd "${curr_folder}/${adn1_folder}"
-# bash "${adn1_file}" "${adn_cli}" >> "${soil_log_file}"
-# echo "read arduino sensors ..."
-# stty -F /dev/ttyACM0 9600 raw -clocal -echo
-# timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"
+cd "${curr_folder}/${adn1_folder}"
+bash "${adn1_file}" "${adn_cli}" >> "${soil_log_file}"
+stty -F /dev/ttyACM0 9600 raw -clocal -echo
+timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"
 
 
 cd "${curr_folder}/${adn2_folder}"
