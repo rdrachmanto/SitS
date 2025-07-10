@@ -70,7 +70,7 @@ setup_pijuice() {
     cd ../../..
     rm -r PiJuice
 
-    sudo tee -a /etc/rc.local <<EOF
+    sudo tee -a /etc/rc.local <<-EOF
     #!/bin/sh -e
     echo ds1339 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
     sudo hwclock -s
