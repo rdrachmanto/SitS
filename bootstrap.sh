@@ -3,6 +3,17 @@
 # ===========================
 # Functions
 # ===========================
+create_folder() {
+  mkdir -p ~/Documents/log
+}
+
+create_env() {
+  sudo apt install python3-venv
+  python3 -m venv ~/Documents/venv_sits --system-site-packages
+  source ~/Documents/venv_sits/bin/activate
+  pip install numpy pandas
+}
+
 prerequisite() {
   sudo apt update
   sudo apt remove -y unattended-upgrades
@@ -86,6 +97,8 @@ prerequisite
 setup_arduino
 setup_scd4x
 setup_pijuice
+create_folder
+create_env
 
 echo "Please change pijuice rtc pin to 52"
 echo "Then reboot"
