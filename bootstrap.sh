@@ -69,26 +69,12 @@ setup_scd4x() {
 setup_pijuice() {
   sudo apt install -y i2c-tools lua5.3
   sudo usermod -aG i2c pi
-  echo "pi ALL=(pijuice) ALL" | sudo tee -a /etc/sudoers
 
-  if ! grep -q "^dtoverlay=i2c-rtc,ds1339" /boot/config.txt; then
-    echo "dtoverlay=i2c-rtc,ds1339" | sudo tee -a /boot/config.txt
-  fi
+  echo "pi ALL=(pijuice) ALL" | sudo tee -a /etc/sudoers
+  echo "dtoverlay=i2c-rtc,ds1339" | sudo tee -a /boot/config.txt
 
   git clone https://github.com/PiSupply/PiJuice.git
   cd PiJuice/Software/Install
-
-  # first round of install -- this is going to fail!
-  # sudo apt install -y python3-smbus
-  # sudo apt install -y pijuice-base
-  # sudo dpkg -i pijuice-base_1.8_all.deb
-
-  # sudo apt --fix-broken -y install
-
-  # # Second round of install
-  # sudo apt install -y python3-smbus
-  # sudo apt install -y pijuice-base
-  # sudo dpkg -i pijuice-base_1.8_all.deb
 
   sudo apt install -y python3-smbus
   if ! sudo dpkg -i pijuice-base_1.8_all.deb; then
@@ -99,16 +85,12 @@ setup_pijuice() {
   cd ../../..
   rm -r PiJuice
 
-  # sudo tee -a /etc/rc.local <<-EOF
-  # #!/bin/sh -e
-  # echo ds1339 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
-  # sudo hwclock -s
-  # exit 0
-  # EOF
-
-  if ! grep -q "ds1339" /etc/rc.local 2>/dev/null; then
-    sudo sed -i '/^exit 0/i echo ds1339 0x68 > /sys/class/i2c-adapter/i2c-1/new_device\nhwclock -s' /etc/rc.local
-  fi
+  sudo tee -a /etc/rc.local <<-EOF
+  #!/bin/sh -e
+  echo ds1339 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
+  sudo hwclock -s
+  exit 0
+  EOF
 }
 
 
