@@ -4,13 +4,13 @@
 # Functions
 # ===========================
 create_folder() {
-  mkdir -p ~/Documents/log
+  mkdir -p /home/pi/Documents/log
 }
 
 create_env() {
   sudo apt install python3-venv
-  python3 -m venv ~/Documents/venv_sits --system-site-packages
-  source ~/Documents/venv_sits/bin/activate
+  python3 -m venv /home/pi/Documents/venv_sits --system-site-packages
+  source /home/pi/Documents/venv_sits/bin/activate
   pip install numpy pandas
 }
 
@@ -31,27 +31,27 @@ prerequisite() {
 setup_arduino() {
   echo "Installing arduino-cli"
   curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-  mv bin/arduino-cli ~/
-  ~/arduino-cli core install arduino:avr
+  mv bin/arduino-cli /home/pi/
+  /home/pi/arduino-cli core install arduino:avr
 
   echo "Installing arduino packages ..."
-  ~/arduino-cli config init
-  ~/arduino-cli config set library.enable_unsafe_install true
-  ~/arduino-cli lib install --git-url https://github.com/DFRobot/DFRobot_EC.git
-  ~/arduino-cli lib install --git-url https://github.com/DFRobot/DFRobot_EC10.git
-  ~/arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_Seesaw.git
-  ~/arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_BusIO.git
-  #~/arduino-cli lib install --git-url https://github.com/Seeed-Studio/Seeed_SCD30.git
-  ~/arduino-cli lib install --git-url https://github.com/DFRobot/DFRobot_SHT20.git
+  /home/pi/arduino-cli config init
+  /home/pi/arduino-cli config set library.enable_unsafe_install true
+  /home/pi/arduino-cli lib install --git-url https://github.com/DFRobot/DFRobot_EC.git
+  /home/pi/arduino-cli lib install --git-url https://github.com/DFRobot/DFRobot_EC10.git
+  /home/pi/arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_Seesaw.git
+  /home/pi/arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_BusIO.git
+  #/home/pi/arduino-cli lib install --git-url https://github.com/Seeed-Studio/Seeed_SCD30.git
+  /home/pi/arduino-cli lib install --git-url https://github.com/DFRobot/DFRobot_SHT20.git
 
-  ~/arduino-cli lib install --git-url https://github.com/milesburton/Arduino-Temperature-Control-Library.git
-  ~/arduino-cli lib install --git-url https://github.com/Sensirion/arduino-core.git
-  ~/arduino-cli lib install --git-url https://github.com/Sensirion/arduino-i2c-scd4x.git
-  ~/arduino-cli lib install --git-url https://github.com/Sensirion/arduino-core.git
-  ~/arduino-cli lib install VernierLib
+  /home/pi/arduino-cli lib install --git-url https://github.com/milesburton/Arduino-Temperature-Control-Library.git
+  /home/pi/arduino-cli lib install --git-url https://github.com/Sensirion/arduino-core.git
+  /home/pi/arduino-cli lib install --git-url https://github.com/Sensirion/arduino-i2c-scd4x.git
+  /home/pi/arduino-cli lib install --git-url https://github.com/Sensirion/arduino-core.git
+  /home/pi/arduino-cli lib install VernierLib
 
   wget https://github.com/PaulStoffregen/OneWire/archive/v2.3.2.zip
-  ~/arduino-cli lib install --zip-path v2.3.2.zip
+  /home/pi/arduino-cli lib install --zip-path v2.3.2.zip
 
   rm v2.3.2.zip
   rm -rf bin
