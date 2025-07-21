@@ -57,14 +57,14 @@ setup_arduino() {
   rm -rf bin
 }
 
-setup_scd4x() {
-  wget https://github.com/Sensirion/raspberry-pi-i2c-scd4x/archive/refs/tags/0.2.2.tar.gz
-  tar -zxvf 0.2.2.tar.gz
-  cd raspberry-pi-i2c-scd4x-0.2.2/
-  make
-  cd ..
-  rm 0.2.2.tar.gz
-}
+# setup_scd4x() {
+#   wget https://github.com/Sensirion/raspberry-pi-i2c-scd4x/archive/refs/tags/0.2.2.tar.gz
+#   tar -zxvf 0.2.2.tar.gz
+#   cd raspberry-pi-i2c-scd4x-0.2.2/
+#   make
+#   cd ..
+#   rm 0.2.2.tar.gz
+# }
 
 setup_pijuice() {
   sudo apt install -y i2c-tools lua5.3
@@ -85,12 +85,12 @@ setup_pijuice() {
   cd ../../..
   rm -r PiJuice
 
-  sudo tee -a /etc/rc.local <<-EOF
-  #!/bin/sh -e
-  echo ds1339 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
-  sudo hwclock -s
-  exit 0
-  EOF
+  # sudo tee -a /etc/rc.local <<-EOF
+  # #!/bin/sh -e
+  # echo ds1339 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
+  # sudo hwclock -s
+  # exit 0
+  # EOF
 }
 
 
@@ -99,7 +99,7 @@ setup_pijuice() {
 # ===========================
 prerequisite
 setup_arduino
-setup_scd4x
+# setup_scd4x
 setup_pijuice
 create_folder
 create_env
