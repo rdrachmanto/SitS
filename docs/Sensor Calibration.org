@@ -1,0 +1,20 @@
+#+TITLE: Calibrating AweSOMSense Sensors
+#+AUTHOR: Rakandhiya Rachmanto
+
+** Sensor Data
+
+This table details the properties we record with this platform, along with its sensor name in this repository and if it needs to be calibrated:
+
+| Recording   | Sensors | Need to Calibrate |
+| pH          | ph1     | Yes               |
+| pH          | ph2     | Yes               |
+| EC          | ec1     | Yes               |
+| EC          | ec2     | Yes               |
+| ORP         | orp1    | No                |
+| ORP         | orp2    | Yes               |
+| Moisture    | moi2    | No                |
+| Temperature | tm2     | No                |
+
+** Calibrating the Sensors
+
+TBC
