@@ -17,13 +17,13 @@ Steps:
 6. Click Next, and choose edit settings when prompted
 7. Customize the username, password, WiFi and WiFi password to use, in this doc, we use this set of credentials
 
-   #+begin_src text
+#+begin_src bash 
    Raspberry Pi username: pi
    Raspberry Pi password: raspberry
 
    WiFi SSID: cloudlab
    WiFi pass: dFi7V4uY
-   #+end_src
+#+end_src
 
 8. Still inside the edit settings pop-up, go to =Services= tab and check "Enable SSH" option and "Use password authentication"
 9. Save the settings
@@ -45,16 +45,15 @@ There are three buttons of PiJuice from left-to-right (left closest to charging 
 
 Make sure to have a 2.4 GHz Wi-Fi or Wi-Fi hotspot with the same SSID and password set during the flashing step, and connect the PC to the same Wi-Fi
 
-1. Know the IP address of the your PC:
+Type the following command on your PC to know your IP addresses: 
 
-   Type the following commands: 
-    #+begin_src bash
-    $: ifconfig  # On Linux/Mac
-    $: ipconfig  # On windows
-    #+end_src
+#+begin_src bash
+$: ifconfig  # On Linux/Mac
+$: ipconfig  # On windows
+#+end_src
 
-    Look to the output of =wlp0s20f3= or =wlan0=. Note down the 192.168.x after the =inet=. In this case 192.168.1 (Not 192.168.1.166)
-    
+Look to the output of =wlp0s20f3= or =wlan0=. Note down the 192.168.x after the =inet=. In this case 192.168.1 (Not 192.168.1.166)
+ 
     #+begin_src bash
     wlp0s20f3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.1.166  netmask 255.255.255.0  broadcast 192.168.1.255     
@@ -70,25 +69,23 @@ Make sure to have a 2.4 GHz Wi-Fi or Wi-Fi hotspot with the same SSID and passwo
         TX errors 0  dropped 1577 overruns 0  carrier 0  collisions 0
     #+end_src
 
-2. Run =nmap= to Scan The Network
+Run =nmap= to Scan The Network
 
-   With the IP Address noted in the step previously, we can use the nmap command figure out the IP address of the Raspberry Pi (as long as it is on, and on
-   the same Wi-Fi). The filter to use is =192.168.1.0/24=
+With the IP Address noted in the step previously, we can use the nmap command figure out the IP address of the Raspberry Pi (as long as it is on, and on
+the same Wi-Fi). The filter to use is =192.168.1.0/24=
 
-   #+begin_src bash
-   sudo nmap -sn <FILTER>   # i.e. sudo nmap -sn 192.168.1.0/24
-   #+end_src
+#+begin_src bash
+sudo nmap -sn <FILTER>   # i.e. sudo nmap -sn 192.168.1.0/24
+#+end_src
 
-   Look for an entry with Raspberry Pi Trading and note down the Pi's IP address
+Look for an entry with Raspberry Pi Trading and note down the Pi's IP address
 
-3. Connect to the Pi
+To connect to the Pi, enter this command, and type the pi's password when prompted. On some OS, there are no characters shown to the terminal when typing the
+password for security reasons, type the password as normal
 
-   Type this command in the command prompt, and type the pi's password when prompted. On some OS, there are no characters shown to the terminal when typing the
-   password for security reasons, type the password as normal
-
-   #+begin_src bash
-   ssh pi@192.168.1.xxx
-   #+end_src
+#+begin_src bash
+ssh pi@192.168.1.xxx
+#+end_src
 
 ** Set Up the Project
 
