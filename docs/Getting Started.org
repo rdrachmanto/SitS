@@ -12,7 +12,7 @@ Steps:
 1. Insert SD card to your computer
 2. Open Raspberry Pi Imager
 3. Select "Raspberry Pi 4" as device
-4. Go with ~Other general purpose OS -> Ubuntu -> Ubuntu Server 20.04.5 LTS (64-bit)= for the OS
+4. Go with =Other general purpose OS -> Ubuntu -> Ubuntu Server 20.04.5 LTS (64-bit)= for the OS
 5. Choose SD card as storage
 6. Click Next, and choose edit settings when prompted
 7. Customize the username, password, WiFi and WiFi password to use, in this doc, we use this set of credentials
