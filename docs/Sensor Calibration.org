@@ -17,4 +17,12 @@ This table details the properties we record with this platform, along with its s
 
 ** Calibrating the Sensors
 
-TBC
+*** pH1 Calibration
+
+*** pH2 Calibration
+
+*** ec1 Calibration
+
+*** ec2 Calibration
+
+*** orp2 Calibration
