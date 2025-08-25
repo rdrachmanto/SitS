@@ -1,16 +1,3 @@
-#####################################################
-###  ins:  <arduino-cli> <driver sh> <adn foler>  ###
-###  e.g.: ~/arduino-cli sensing.sh arduino1      ###
-#####################################################
-
-# adn1_folder="tm2"
-# adn1_file="tm2.sh"
-# adn2_folder="ph1"
-# adn2_file="ph1.sh"
-# adn3_folder="ec2"
-# adn3_file="ec2.sh"
-# adn4_folder="orp2"
-# adn4_file="orp2.sh"
 adn_cli="/home/pi/arduino-cli"
 cam_code_path="/home/pi/Documents/deploy/sensors/camera.sh"
 img_path="/home/pi/Documents/log/img"
@@ -32,28 +19,6 @@ curr_folder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 echo "compile arduino ..."
 echo "read arduino sensors ..."
 
-# cd "${curr_folder}/${adn1_folder}"
-# bash "${adn1_file}" "${adn_cli}" >> "${soil_log_file}"
-# stty -F /dev/ttyACM0 9600 raw -clocal -echo
-# timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"
-#
-#
-# cd "${curr_folder}/${adn2_folder}"
-# bash "${adn2_file}" "${adn_cli}" >> "${soil_log_file}"
-# stty -F /dev/ttyACM0 9600 raw -clocal -echo
-# timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"
-#
-# cd "${curr_folder}/${adn3_folder}"
-# bash "${adn3_file}" "${adn_cli}" >> "${soil_log_file}"
-# stty -F /dev/ttyACM0 9600 raw -clocal -echo
-# timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"
-#
-# cd "${curr_folder}/${adn4_folder}"
-# bash "${adn4_file}" "${adn_cli}" >> "${soil_log_file}"
-# stty -F /dev/ttyACM0 9600 raw -clocal -echo
-# timeout --preserve-status 30s cat /dev/ttyACM0 >>  "${soil_log_file}"
-#
-
 sensors=(
   "tm1"
   "tm2"
@@ -67,6 +32,6 @@ sensors=(
 )
 
 for sr in "${sensors[@]}"; do
-  cd "${curr_folder}/${adn4_folder}"
-  bash "${adn4_file}" "${adn_cli}" >> "${soil_log_file}"
+  cd "${curr_folder}/${sr}"
+  bash run.sh "${adn_cli}" >> "${soil_log_file}"
 done
