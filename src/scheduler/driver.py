@@ -17,8 +17,6 @@ sys.path.append(up_path+'/sensors/deploy')
 
 from Pijuice import Pijuice
 from wakeup import Wakeup
-from sensing import Sensing
-
 
 
 class Scheduler:
@@ -237,8 +235,8 @@ class Scheduler:
 if "__main__"==__name__:
     sch_path= curr_path + '/data/scheduling_log.csv'
     sensor_path = curr_path + '/data/sensor_profile.json'
-    sensing_path = up_path + '/sensors/deploy/sensing.sh'
-    sensing_timeout = 360
+    sensing_path = up_path + '/sensing/sensing.sh'
+    sensing_timeout = 1800 
     arduino_cli = '/home/pi/arduino-cli'
     py_path = '/home/pi/Documents/venv_sits/bin/python3'
     plc = plc3('P3')
