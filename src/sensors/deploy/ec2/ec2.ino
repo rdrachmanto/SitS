@@ -1,17 +1,31 @@
- /* Serial Commands:
+/* Serial Commands:
  *   enterec -> enter the calibration mode
  *   calec -> calibrate with the standard buffer solution, one buffer solutions(12.88ms/cm) will be automaticlly recognized
  *   exitec -> save the calibrated parameters and exit from calibration mode
  *
  */
 
+// -----------------------------------------------------
+// Module Inclusion
+// -----------------------------------------------------
 #include "DFRobot_EC10.h"
 #include <EEPROM.h>
 
+// -----------------------------------------------------
+// Setup pin
+// -----------------------------------------------------
 #define EC_PIN A2
+
+// -----------------------------------------------------
+// Init variables
+// -----------------------------------------------------
 float voltage,ecValue,temperature = 32;
 DFRobot_EC10 ec;
 
+
+// -----------------------------------------------------
+// Setup and Loop
+// -----------------------------------------------------
 void setup()
 {
   Serial.begin(9600);  
