@@ -20,7 +20,7 @@ prerequisite() {
   sudo locale-gen en_US.UTF-8 en_GB.UTF-8
 
   wget https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20211019_all.deb -p ./
-  sudo apt -y install libnewt0.52 whiptail parted triggerhappy lua5.1 alsa-utils libraspberrypi-bin wget gcc make unzip
+  sudo apt -y install libnewt0.52 whiptail parted triggerhappy lua5.1 alsa-utils libraspberrypi-bin wget gcc make unzip jq
   sudo dpkg -i archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20211019_all.deb
   rm /tmp/raspi-config_20211019_all.deb
   rm -r archive.raspberrypi.org
