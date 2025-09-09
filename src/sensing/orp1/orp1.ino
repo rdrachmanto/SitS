@@ -13,7 +13,7 @@ int ReadingNumber=0;
 void setup() 
 {
 	Serial.begin(9600); //initialize serial communication at 9600 baud
-	Serial.println("SensorID: orp1 Vernier Format 2");
+	// Serial.println("SensorID: orp1 Vernier Format 2");
 	//Serial.print(Sensor);
 	//Serial.print(" ");
 	//Serial.println("Readings taken using Ardunio");
@@ -35,13 +35,16 @@ void loop()
 	//the print below does the division first to avoid overflows
 	//Serial.print(ReadingNumber/1000.0*TimeBetweenReadings); 
 	float Count = analogRead(A0);
-	Serial.print("ori:");
-	Serial.print(Count);
+	// Serial.print("ori:");
+	// Serial.print(Count);
 	float Voltage = Count / 1023 * 5.0;// convert from count to raw voltage
 	float SensorReading= Intercept + Voltage * Slope; //converts voltage to sensor reading
 	//Serial.print("\t"); // tab character
-	Serial.print(", post:");
-	Serial.println(SensorReading);
+	// Serial.print(", post:");
+	// Serial.println(SensorReading);
+
+  String message = String(Count) + "," + String(SensorReading)
+
 	delay(TimeBetweenReadings);// delay in between reads for stability
 	ReadingNumber++;
 }

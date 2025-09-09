@@ -47,8 +47,9 @@ void print_EC_data(void) {
   // SAL = strtok(NULL, ",");                         
   // GRAV = strtok(NULL, ",");                        
 
-  Serial.print("sensorid:ec1, value:");               
-  Serial.println(EC);                                 
+  // Serial.print("sensorid:ec1, value:");               
+  String message = String(EC) + "," + String(EC);
+  Serial.println(message);                                 
 
   // Serial.print("TDS:");                            
   // Serial.println(TDS);                             

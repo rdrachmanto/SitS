@@ -55,8 +55,13 @@ void loop() {                                         //here we go...
 
 
   if (sensor_string_complete == true) {               //if a string from the Atlas Scientific product has been received in its entirety
-    Serial.print("sensorid:ph1, value:");     
-    Serial.println(sensorstring);                     //send that string to the PC's serial monitor
+    // Serial.print("sensorid:ph1, value:");     
+    // Serial.println(sensorstring);                     //send that string to the PC's serial monitor
+
+    if (isdigit(sensorstring[0])) {
+      String message = String(sensorstring) + "," + String(sensorstring);
+      Serial.println(message);
+    }
     
     /*                                                //uncomment this section to see how to convert the pH reading from a string to a float 
     if (isdigit(sensorstring[0])) {                   //if the first character in the string is a digit

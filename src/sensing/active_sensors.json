@@ -1,0 +1,37 @@
+{
+  "tm1": {
+    "timeout": "10s"
+  },
+  "tm2": {
+    "timeout": "10s",
+    "freq": 9600
+  },
+  "moi2": {
+    "timeout": "10s",
+    "freq": 9600
+  },
+  "ph1": {
+    "timeout": "10s",
+    "freq": 9600
+  },
+  "ph2": {
+    "timeout": "10s",
+    "freq": 115200 
+  },
+  "ec1": {
+    "timeout": "10s",
+    "freq": 9600
+  },
+  "ec2": {
+    "timeout": "10s",
+    "freq": 9600 
+  },
+  "orp1": {
+    "timeout": "10s",
+    "freq": 9600
+  },
+  "orp2": {
+    "timeout": "10s",
+    "freq": 9600
+  }
+}

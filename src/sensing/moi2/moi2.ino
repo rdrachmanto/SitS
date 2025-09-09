@@ -5,7 +5,9 @@ void setup() {
 void loop() {
   int val;
   val = analogRead(A3);
-  Serial.println(val);
+  String message = String(val) + "," + String(val);
+
+  Serial.println(message);
   delay(100);
 }
 

@@ -15,17 +15,18 @@ void setup()
 
 void loop()
 {
-    float humd = sht20.readHumidity();                  // Read Humidity
+    // float humd = sht20.readHumidity();                  // Read Humidity
     float temp = sht20.readTemperature();               // Read Temperature
-    Serial.print("ori: ");
+    // Serial.print("ori: ");
     //Serial.print("Time:");
     //Serial.print(millis());
-    Serial.print("Tmpr-");
-    Serial.print(temp, 1);
-    //Serial.print("C");
-    Serial.print(" Hu-");
-    Serial.print(humd, 1);
+    // Serial.print("Tmpr-");
+    // Serial.print(temp, 1);
+    // Serial.print("C");
+    // Serial.print(" Hu-");
+    // Serial.print(humd, 1);
     //Serial.print("%");
-    Serial.println();
+    String message = String(temp) + "," + String(temp);
+    Serial.println(message);
     delay(500);
 }

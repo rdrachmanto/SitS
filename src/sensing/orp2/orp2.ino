@@ -49,7 +49,7 @@ void loop(void) {
       wait_count--;
     }
     else {
-      Serial.print("sensorid:orp2, ori:");
+      // Serial.print("sensorid:orp2, ori:");
       Serial.print(orpArray[10]);
       Serial.print("_");
       Serial.print(orpArray[12]);
@@ -72,7 +72,7 @@ void loop(void) {
       Serial.print("_");
       Serial.print(orpArray[29]);
  
-      Serial.print(", value:");
+      Serial.print(",");
       Serial.println((int)orpValue);
       //Serial.println(" mV");
       digitalWrite(LED,1-digitalRead(LED)); // convert the state of the LED indicator      
