@@ -47,7 +47,7 @@ void loop()
       // Serial.print(ecValue,1);
       // Serial.println("ms/cm");
       String message = String(voltage) + "," + String(ecValue);
-      Serial.println(message)
+      Serial.println(message);
     }
     ec.calibration(voltage,temperature);  // calibration process by Serial CMD
 }
