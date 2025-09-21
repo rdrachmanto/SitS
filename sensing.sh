@@ -3,7 +3,7 @@ cam_code_path="/home/pi/Documents/deploy/sensors/camera.sh"
 img_path="/home/pi/Documents/log/img"
 soil_log_file="/home/pi/Documents/log/sensing_soil.log"
 air_log_file="/home/pi/Documents/log/sensing_air.log"
-curr_folder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+sensing_dir = "./src/sensing"
 
 # echo "timeUTC: $(/home/pi/Documents/venv_sits/bin/python3 /home/pi/Sits/src/pijuice/time.py)" >> "${soil_log_file}"
 
@@ -33,13 +33,12 @@ sensors=(
 
 for sr in "${sensors[@]}"; do
   cd "${curr_folder}/${sr}"
-  # bash run.sh "${adn_cli}" >> "${soil_log_file}"
 
   if [ sr = "tm1" ]; then
     # Get centigrade temp and change temperature variable of ec2 and ph2
     temp=$(digitemp_DS9097 -n 1 -d 2 -t 0 -q -o "%.2C")
-    sed -i "s/temperature = .*/temperature = $temp;/" ../ec2/ec2.ino
-    sed -i "s/temperature = .*/temperature = $temp;/" ../ph2/ph2.ino
+    sed -i "s/temperature = .*/temperature = $temp;/" $sensing_dir/ec2/ec2.ino
+    sed -i "s/temperature = .*/temperature = $temp;/" $sensing_dir/ph2/ph2.ino
 
     # Log centigrade temp
     timeout --preserve-status digitemp_DS9097 -n 0 -d 2 -t 0 -q -o "%.2C" | while IFS= read -r line; do
@@ -50,12 +49,11 @@ for sr in "${sensors[@]}"; do
     interface=/dev/ttyACM0
     freq=$(jq ".${sr}.freq" ./active_sensors.json)
     timeout=$(jq ".${sr}.timeout" ./active_sensors.json)
-    curr_path=$(dirname "$0")
-    ino_path="${curr_path}/${sr}.ino"
+    ino_path="${sensing_dir}/${sr}/${sr}.ino"
 
     # Compile and upload .ino
     ${adn_cli} compile --fqbn arduino:avr:uno "${ino_path}" 
-    ${adn_cli} upload panic -p ${interface} --fqbn arduino:avr:uno "${ino_path}"
+    ${adn_cli} upload -p ${interface} --fqbn arduino:avr:uno "${ino_path}"
 
     # Log sensor data
     stty -F ${interface} $freq raw -clocal -echo
