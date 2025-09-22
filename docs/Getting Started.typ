@@ -1,3 +1,7 @@
+#show link: underline
+#show link: set text(fill: blue)
+#show raw.where(block: true): block.with(fill: luma(240), inset: 5pt, width: 100%, radius: 2pt)
+
 = Getting Started with SitS
 #v(1em)
 
@@ -31,7 +35,7 @@
 11. Begin flashing the SD card
 12. Put the flashed SD card to the Pi
 
-#v(1em)
+#pagebreak()
 
 == Power up and Connect
 
@@ -87,7 +91,7 @@ Make sure to have a 2.4 GHz Wi-Fi or Wi-Fi hotspot with the same SSID and passwo
   ssh pi@192.168.1.xx
   ```
 
-#v(1em)
+#pagebreak()
 
 == Set up SitS
 
@@ -155,16 +159,16 @@ Next, reboot the Pi with:
 pi@ubuntu:~$ sudo reboot -h now
 ```
 
-#v(1em)
+#pagebreak()
 
 == Accessing and Downloading Logs
 
 After running `sensing.sh` or `main.sh`, there should be log files available at the below locations on the Pi:
 
-Soil sensors data: `/home/pi/Documents/log/sensing_soil.log`
-Air sensors data: `/home/pi/Documents/log/sensing_air.log`
-Image data: `/home/pi/Documents/log/img/`
-Scheduling data: `/home/pi/SitS/src/scheduler/data/scheduling_log.csv`
+- Soil sensors data: `/home/pi/Documents/log/sensing_soil.log`
+- Air sensors data: `/home/pi/Documents/log/sensing_air.log`
+- Image data: `/home/pi/Documents/log/img/`
+- Scheduling data: `/home/pi/SitS/src/scheduler/data/scheduling_log.csv`
 
 To save these log files to the PC, type these commands in a new terminal window:
 
