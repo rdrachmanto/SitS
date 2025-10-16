@@ -1,9 +1,14 @@
+# -----------------------------------------------------
+# Variables to use, mainly path
+# Try to be as explicit as possible
+# -----------------------------------------------------
 adn_cli="/home/pi/arduino-cli"
 cam_code_path="/home/pi/Documents/deploy/sensors/camera.sh"
 img_path="/home/pi/Documents/log/img"
 soil_log_file="/home/pi/Documents/log/sensing_soil.log"
 air_log_file="/home/pi/Documents/log/sensing_air.log"
-sensing_dir = "./src/sensing"
+sensing_dir="$HOME/SitS/src/sensing"
+sensor_json_loc="$HOME/SitS/src/sensing/active_sensors.js"
 
 # echo "timeUTC: $(/home/pi/Documents/venv_sits/bin/python3 /home/pi/Sits/src/pijuice/time.py)" >> "${soil_log_file}"
 
@@ -32,9 +37,9 @@ sensors=(
 )
 
 for sr in "${sensors[@]}"; do
-  cd "${curr_folder}/${sr}"
+  # cd "${curr_folder}/${sr}"
 
-  if [ sr = "tm1" ]; then
+  if [ $sr = "tm1" ]; then
     # Get centigrade temp and change temperature variable of ec2 and ph2
     temp=$(digitemp_DS9097 -n 1 -d 2 -t 0 -q -o "%.2C")
     sed -i "s/temperature = .*/temperature = $temp;/" $sensing_dir/ec2/ec2.ino
@@ -47,8 +52,8 @@ for sr in "${sensors[@]}"; do
   else
     # Important variables
     interface=/dev/ttyACM0
-    freq=$(jq ".${sr}.freq" ./active_sensors.json)
-    timeout=$(jq ".${sr}.timeout" ./active_sensors.json)
+    freq=$(jq -r ".${sr}.freq" ${sensor_json_loc})
+    timeout=$(jq -r ".${sr}.timeout" ${sensor_json_loc})
     ino_path="${sensing_dir}/${sr}/${sr}.ino"
 
     # Compile and upload .ino
