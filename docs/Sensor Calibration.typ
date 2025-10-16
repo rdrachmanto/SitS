@@ -50,6 +50,8 @@ Your terminal connections would look like this:
 
 === PH1
 
+For PH1, we are going to do a 3-step calibration, first with pH 4, then pH 7 finished with pH 10
+
 1. In the first connection, type this command to set the Pi to compile and upload PH1's sensor code to Arduino: 
     ```bash 
     pi@ubuntu:~/SitS/src/sensing$ bash run ph1/run.sh
@@ -83,7 +85,7 @@ Original calibration guide can be found here: #link("https://wiki.dfrobot.com/gr
 
 === EC1 
 
-For EC1, we are going to do a 3-step calibration, first with dry, then 12.880 solution, finished with 150.000 solution
+Similar to PH1, for EC1, we are going to do a 3-step calibration, first with dry, then 12.880 solution, finished with 150.000 solution
 
 1. In the first connection, type this command to set the Pi to compile and upload EC1's sensor code to Arduino: 
     ```bash 

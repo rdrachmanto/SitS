@@ -17,3 +17,7 @@ Deployment `.ino` files are located in `src/sensors/deploy`.
 ## Acknowledgement
 
 Based on [Jianwei Hao](https://github.com/glennjw)'s work
+
+## Note
+
+This repo assumes it is stored in `$HOME` directory
