@@ -137,7 +137,7 @@ class Scheduler:
         except subprocess.CalledProcessError as e:
             print(f"Error executing the shell script: {e}")
         except subprocess.TimeoutExpired:
-            print(f"The shell script timed out after {duration} seconds.")
+            print(f"The shell script timed out after {self.sense_timeout} seconds.")
 
 
 
@@ -237,7 +237,7 @@ if "__main__"==__name__:
     sensor_path = curr_path + '/data/sensor_profile.json'
     # sensing_path = up_path + '/sensing/sensing.sh'
     sensing_path = "/home/pi/SitS/sensing.sh"
-    sensing_timeout = 1800 
+    sensing_timeout = 600 
     arduino_cli = '/home/pi/arduino-cli'
     py_path = '/home/pi/Documents/venv_sits/bin/python3'
     plc = plc3('P3')

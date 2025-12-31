@@ -37,7 +37,7 @@ gitUpdate() {
     if ping -c 1 github.com >/dev/null; then
         echo "GitHub is connected."
         # Add, commit, and push the changes to the repository
-        cd /home/pi/Documents/deploy
+        cd /home/pi/Documents/deploy || exit
         git pull
         git commit -m "update "
         git push

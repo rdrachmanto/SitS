@@ -27,7 +27,7 @@ echo "read arduino sensors ..."
 sensors=(
   "tm1"
   # "tm2"
-  "moi2"
+  # "moi2"
   "ph1"
   "ph2"
   "ec1"
