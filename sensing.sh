@@ -5,8 +5,8 @@
 adn_cli="/home/pi/arduino-cli"
 cam_code_path="/home/pi/Documents/deploy/sensors/camera.sh"
 img_path="/home/pi/Documents/log/img"
-soil_log_file="/home/pi/Documents/log/sensing_soil.log"
-air_log_file="/home/pi/Documents/log/sensing_air.log"
+soil_log_file="/home/pi/Documents/log/$(date '+%F_%T')_sensing_soil.log"
+air_log_file="/home/pi/Documents/log/$(date '+%F_%T')_sensing_air.log"
 sensing_dir="$HOME/SitS/src/sensing"
 sensor_json_loc="$HOME/SitS/src/sensing/active_sensors.js"
 
@@ -32,7 +32,7 @@ sensors=(
   "ph2"
   "ec1"
   "ec2"
-  "orp1"
+  # "orp1"
   "orp2"
 )
 
@@ -63,6 +63,7 @@ for sr in "${sensors[@]}"; do
     # Log sensor data
     stty -F ${interface} $freq raw -clocal -echo
     timeout --preserve-status ${timeout} cat ${interface} | while IFS= read -r line; do
+      [[ "$line" == *"_kvalue"* ]] && continue
       echo "$(date '+%F %T'),${sr},$line"
     done >> "${soil_log_file}"
   fi
