@@ -46,7 +46,7 @@ for sr in "${sensors[@]}"; do
     sed -i "s/temperature = .*/temperature = $temp;/" $sensing_dir/ph2/ph2.ino
 
     # Log centigrade temp
-    timeout --preserve-status digitemp_DS9097 -n 0 -d 2 -t 0 -q -o "%.2C" | while IFS= read -r line; do
+    timeout --preserve-status 10s digitemp_DS9097 -n 0 -d 2 -t 0 -q -o "%.2C" | while IFS= read -r line; do
       echo "$(date '+%F %T'),${sr},${line},${line}"
     done >> "${soil_log_file}"
   else
