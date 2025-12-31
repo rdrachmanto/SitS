@@ -7,8 +7,8 @@ cam_code_path="/home/pi/Documents/deploy/sensors/camera.sh"
 img_path="/home/pi/Documents/log/img"
 soil_log_file="/home/pi/Documents/log/$(date '+%F_%T')_sensing_soil.log"
 air_log_file="/home/pi/Documents/log/$(date '+%F_%T')_sensing_air.log"
-sensing_dir="$HOME/SitS/src/sensing"
-sensor_json_loc="$HOME/SitS/src/sensing/active_sensors.js"
+sensing_dir="/home/pi/SitS/src/sensing"
+sensor_json_loc="/home/pi/SitS/src/sensing/active_sensors.json"
 
 # echo "timeUTC: $(/home/pi/Documents/venv_sits/bin/python3 /home/pi/Sits/src/pijuice/time.py)" >> "${soil_log_file}"
 
