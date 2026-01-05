@@ -38,7 +38,6 @@ class Scheduler:
     """
 
     def __init__(self, simulator, sensor_path, sch_path, battery, policy=None, resolution=None, sensing_path=None, sense_timeout=300, arduino_cli=None, py_path='python3' ):
-
         self.sch_columns = ['policy','schd_time','sensors','start_soc','end_soc','exed','exe_time','priority','info']    # all infos need to log
         self.sensor_path = sensor_path
         self.sensing_path = sensing_path
@@ -131,7 +130,6 @@ class Scheduler:
         # Run the shell script with a timeout
         #sense = Sensing(sense_timeout=self.sense_timeout, sensing_path=self.sensing_path, arduino_cli=self.arduino_cli)
         #sense.run(compile=False,upload=False)
-
         try:
             subprocess.run(['timeout', '--preserve-status', f'{self.sense_timeout}s', 'bash', self.sensing_path], check=True)
         except subprocess.CalledProcessError as e:

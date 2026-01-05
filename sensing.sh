@@ -27,12 +27,12 @@ echo "read arduino sensors ..."
 sensors=(
   "tm1"
   # "tm2"
-  # "moi2"
+  "moi2"
   "ph1"
   "ph2"
   "ec1"
   "ec2"
-  # "orp1"
+  "orp1"
   "orp2"
 )
 
@@ -57,13 +57,17 @@ for sr in "${sensors[@]}"; do
     ino_path="${sensing_dir}/${sr}/${sr}.ino"
 
     # Compile and upload .ino
+    echo "Compiling ${sr}..."
     ${adn_cli} compile --fqbn arduino:avr:uno "${ino_path}" 
+    echo "Uploading ${sr}..."
     ${adn_cli} upload -p ${interface} --fqbn arduino:avr:uno "${ino_path}"
 
     # Log sensor data
     stty -F ${interface} $freq raw -clocal -echo
+    echo "Reading ${sr}..."
     timeout --preserve-status ${timeout} cat ${interface} | while IFS= read -r line; do
-      [[ "$line" == *"_kvalue"* ]] && continue
+      line=${line%$'\r'}  # don't include carriage returns
+      [[ "$line" == *"_kvalue"* ]] && continue  # don't include _kvalue
       echo "$(date '+%F %T'),${sr},$line"
     done >> "${soil_log_file}"
   fi
