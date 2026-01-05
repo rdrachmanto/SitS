@@ -94,7 +94,23 @@ setup_pijuice() {
 }
 
 setup_r4pi() {
-    
+    sudo apt install -y \
+         libcurl4-openssl-dev \
+         libssl-dev \
+         libxml2-dev \
+         libfontconfig1-dev libfreetype-dev \
+         libharfbuzz-dev libfribidi-dev \
+         libpng-dev libtiff5-dev libjpeg-dev libwebp-dev
+
+    curl -Ls https://github.com/r-lib/rig/releases/download/latest/rig-linux-arm64-latest.tar.gz |
+        sudo tar xz -C /usr/local
+
+    sudo rig add release
+    sudo rig default release
+
+    Rscript -e 'install.packages("tidyverse")'
+    Rscript -e 'install.packages("caret")'
+    Rscript -e 'install.packages("ranger")'
 }
 
 
