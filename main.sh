@@ -63,6 +63,12 @@ schedule() {
     pth /home/pi/SitS/src/pijuice/status.py
 }
 
+## Check CRON JOB
+## This will add CRON_LINE into the user's cron if not exists
+CRON_LINE='@reboot bash /home/pi/SitS/main.sh >> /home/pi/Documents/whitehall-log/sch.log 2>&1'
+(crontab -l 2>/dev/null | grep -Fqx "$CRON_LINE") || \
+( crontab -l 2>/dev/null; echo "$CRON_LINE" ) | crontab -
+
 
 echo "=====================  scheduling  ========================"
 echo "timeUTC: $(/home/pi/Documents/venv_sits/bin/python3 /home/pi/SitS/src/pijuice/time.py)"
