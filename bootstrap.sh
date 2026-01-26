@@ -121,6 +121,7 @@ prerequisite
 setup_arduino
 # setup_scd4x
 setup_pijuice
+setup_r4pi
 create_folder
 create_env
 
