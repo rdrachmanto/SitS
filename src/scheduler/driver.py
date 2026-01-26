@@ -235,15 +235,27 @@ if "__main__"==__name__:
     sensor_path = curr_path + '/data/sensor_profile.json'
     # sensing_path = up_path + '/sensing/sensing.sh'
     sensing_path = "/home/pi/SitS/sensing.sh"
-    sensing_timeout = 600 
+    sensing_timeout = 600
     arduino_cli = '/home/pi/arduino-cli'
     py_path = '/home/pi/Documents/venv_sits/bin/python3'
     plc = plc3('P3')
     pj = Pijuice()
     batt = Battery(mini=1200, base_consume=5, capacity=10000, HW=pj)
     simul = pj   # filling code, null function
-    scher = Scheduler(simulator=simul, resolution='hour', policy=plc, sensor_path=sensor_path, sch_path=sch_path, battery=batt, sensing_path=sensing_path, sense_timeout=sensing_timeout, arduino_cli=arduino_cli, py_path=py_path)
+
+    scher = Scheduler(
+        simulator=simul,
+        resolution='hour',
+        policy=plc,
+        sensor_path=sensor_path,
+        sch_path=sch_path,
+        battery=batt,
+        sensing_path=sensing_path,
+        sense_timeout=sensing_timeout,
+        arduino_cli=arduino_cli,
+        py_path=py_path)
     sch = scher.start()
+
     schd_time = sch['schd_time'].values[-1].astype('datetime64[s]').item()
     #print('sch time: ', schd_time)
     exe_sch = Wakeup().run( time=schd_time )
