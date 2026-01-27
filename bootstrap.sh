@@ -8,7 +8,6 @@ create_folder() {
 }
 
 create_env() {
-    sudo apt install python3-venv
     python3 -m venv /home/pi/Documents/venv_sits --system-site-packages
     source /home/pi/Documents/venv_sits/bin/activate
     pip install numpy pandas
@@ -16,16 +15,34 @@ create_env() {
 
 prerequisite() {
     sudo apt update
-    sudo apt remove -y unattended-upgrades
     sudo locale-gen en_US.UTF-8 en_GB.UTF-8
 
-    wget https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20211019_all.deb -p ./
-    sudo apt -y install libnewt0.52 whiptail parted triggerhappy lua5.1 alsa-utils libraspberrypi-bin wget gcc make unzip jq
-    sudo dpkg -i archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20211019_all.deb
-    rm /tmp/raspi-config_20211019_all.deb
-    rm -r archive.raspberrypi.org
-
-    sudo apt-get install -y vim net-tools tasksel wiringpi i2c-tools fswebcam rfkill wireless-tools raspi-config digitemp python3-venv lua5.3 libraspberrypi-bin
+    sudo apt -y install libnewt0.52 \
+         whiptail \
+         parted \
+         triggerhappy \
+         lua5.1 \
+         alsa-utils \
+         wget \
+         gcc \
+         make \
+         unzip \
+         jq \
+         raspi-utils \
+         raspi-utils-core \
+         gpiod \
+         libgpiod-dev \
+         vim \
+         net-tools \
+         tasksel \
+         i2c-tools \
+         fswebcam \
+         rfkill \
+         wireless-tools \
+         raspi-config \
+         digitemp \
+         python3-venv \
+         lua5.3
 }
 
 setup_arduino() {
@@ -67,7 +84,6 @@ setup_arduino() {
 # }
 
 setup_pijuice() {
-    sudo apt install -y i2c-tools lua5.3
     sudo usermod -aG i2c pi
 
     echo "pi ALL=(pijuice) ALL" | sudo tee -a /etc/sudoers
@@ -102,12 +118,8 @@ setup_r4pi() {
          libharfbuzz-dev libfribidi-dev \
          libpng-dev libtiff5-dev libjpeg-dev libwebp-dev
 
-    curl -Ls https://github.com/r-lib/rig/releases/download/latest/rig-linux-arm64-latest.tar.gz |
-        sudo tar xz -C /usr/local
-
-    sudo rig add release
-    sudo rig default release
-
+    sudo apt install r-base r-base-core
+    
     Rscript -e 'install.packages("tidyverse")'
     Rscript -e 'install.packages("caret")'
     Rscript -e 'install.packages("ranger")'
