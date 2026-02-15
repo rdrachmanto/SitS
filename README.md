@@ -21,3 +21,5 @@ Based on [Jianwei Hao](https://github.com/glennjw)'s work
 ## Note
 
 This repo assumes it is stored in `$HOME` directory
+
+Numpy must be pinned to `numpy==1.24.4` and pandas has to be `pandas==2.0.3`
