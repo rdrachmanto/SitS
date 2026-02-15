@@ -9,6 +9,6 @@ void loop() {
   Serial.print(val);
   Serial.print(",");
   Serial.println(val);
-  delay(100);
+  delay(1000);
 }
 

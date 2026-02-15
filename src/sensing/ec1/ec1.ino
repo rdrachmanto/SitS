@@ -48,9 +48,6 @@ void print_EC_data(void) {
   // GRAV = strtok(NULL, ",");                        
 
   // Serial.print("sensorid:ec1, value:");
-  Serial.print(EC);
-  Serial.print(",");
-  Serial.println(EC);                                 
 
   // Serial.print("TDS:");                            
   // Serial.println(TDS);                             
@@ -60,9 +57,12 @@ void print_EC_data(void) {
 
   // Serial.print("GRAV:");                           
   // Serial.println(GRAV);                            
-  // Serial.println();                                
+  // Serial.println();
   
   f_ec= atof(EC);                                     
+  Serial.print(f_ec);
+  Serial.print(",");
+  Serial.println(f_ec);                                 
 }
 
 // -----------------------------------------------------

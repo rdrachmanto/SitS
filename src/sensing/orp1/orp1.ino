@@ -6,7 +6,7 @@ VernierLib Vernier;
 char Sensor[]="ORP";
 float Intercept = -559.793;
 float Slope = 466.875;
-int TimeBetweenReadings = 500; // in ms
+int TimeBetweenReadings = 1000; // in ms
 int ReadingNumber=0;
 
 /////////////////////////////////////////
@@ -43,7 +43,9 @@ void loop()
 	// Serial.print(", post:");
 	// Serial.println(SensorReading);
 
-  String message = String(Count) + "," + String(SensorReading)
+  Serial.print(String(Count));
+  Serial.print(",");
+  Serial.println(String(SensorReading))
 
 	delay(TimeBetweenReadings);// delay in between reads for stability
 	ReadingNumber++;
