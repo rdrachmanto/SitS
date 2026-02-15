@@ -45,7 +45,7 @@ void loop()
 
   Serial.print(String(Count));
   Serial.print(",");
-  Serial.println(String(SensorReading))
+  Serial.println(String(SensorReading));
 
 	delay(TimeBetweenReadings);// delay in between reads for stability
 	ReadingNumber++;
